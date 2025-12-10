@@ -1,0 +1,70 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Яблоко",
+        "description": "Яблоко очень полезный фрукт",
+        "image": "",
+        "category": 1,
+        "price": "50.00",
+        "created_at": "2025-12-10T18:43:14.263Z",
+        "updated_at": "2025-12-10T18:43:14.264Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Груша",
+        "description": "Груша очень полезный фрукт",
+        "image": "",
+        "category": 1,
+        "price": "40.00",
+        "created_at": "2025-12-10T18:44:09.637Z",
+        "updated_at": "2025-12-10T18:44:09.637Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "Огурец",
+        "description": "Огурец очень полезный овощ",
+        "image": "",
+        "category": 2,
+        "price": "30.00",
+        "created_at": "2025-12-10T18:55:10.589Z",
+        "updated_at": "2025-12-10T18:55:10.589Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+        "name": "Помидор",
+        "description": "Помидор очень полезный овощ",
+        "image": "",
+        "category": 2,
+        "price": "50.00",
+        "created_at": "2025-12-10T19:00:51.237Z",
+        "updated_at": "2025-12-10T19:00:51.237Z"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Фрукты",
+        "description": "Здесь находятся все фрукты"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Овощи",
+        "description": "Здесь находятся все овощи"
+    }
+}
+]
