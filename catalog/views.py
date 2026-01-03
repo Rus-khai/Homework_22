@@ -47,3 +47,5 @@ def catalog_list(request):
 #         'products': products,
 #     }
 #     return render(request, 'catalog/home.html', context=context)
+
+
