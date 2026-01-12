@@ -1,51 +1,32 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView, TemplateView
 
 from catalog.models import Product
 
 
-def home(request):
-    products = Product.objects.all()
-    context = {
-        'products': products,
-    }
-    return render(request, 'catalog/home.html', context=context)
+class HomeView(ListView):
+    model = Product
+    template_name = "catalog/home.html"
+    context_object_name = "products"
 
 
-def contacts(request):
-    if request.method == "POST":
+class ContactsView(TemplateView):
+    template_name = "catalog/contacts.html"
+
+    def post(self, request, *args, **kwargs):
         name = request.POST.get("name")
-        massage = request.POST.get("massage")
+        message = request.POST.get("message")
 
         return HttpResponse(f"Спасибо, {name}! Сообщение получено.")
-    return render(request, "catalog/contacts.html")
 
 
-def view_product(request, product_id):
-    product = Product.objects.get(id=product_id)
-    context = {
-        'product_name': product.name,
-        'product_description': product.description,
-        'product_category': product.category.name,
-        'product_price': product.price,
-        'product_created_at': product.created_at,
-        'product_updated_at': product.updated_at,
-    }
-    return render(request, 'catalog/view_product.html', context=context)
+class CatalogDetailView(DetailView):
+    model = Product
+    template_name = "catalog/detail_product.html"
+    context_object_name = "product"
 
 
-def catalog_list(request):
-    products = Product.objects.all()
-    context = {
-        'products': products,
-    }
-    return render(request, 'catalog/catalog_list.html', context=context)
-
-# def product_list(request):
-#     products = Product.objects.all()
-#     context = {
-#         'products': products,
-#     }
-#     return render(request, 'catalog/home.html', context=context)
-
-
+class CatalogListView(ListView):
+    model = Product
+    template_name = "catalog/catalog_list.html"
+    context_object_name = "object_list"
