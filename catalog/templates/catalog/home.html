@@ -189,7 +189,7 @@
       </ul>
     </div>
     <header data-bs-theme="dark">
-        {% include "catalog/includes/inc_menu.html" %}
+        {% include "catalog/inc_menu.html" %}
     </header>
     <main>
       <section class="py-5 text-center container">
@@ -201,6 +201,7 @@
             </p>
             <p>
               <a href="{% url 'catalog:catalog_list' %}" class="btn btn-primary my-2">Каталог</a>
+              <a href="{% url 'blog:blogs_list' %}" class="btn btn-secondary my-2">Блог</a>
             </p>
           </div>
         </div>

@@ -1,0 +1,16 @@
+{% extends "catalog/home.html" %}
+
+
+{% block content %}
+
+{% include 'catalog/header.html' %}
+<div class="pricing-header px-3 py-3 pt-md-0 pb-md-3 mx-auto text-center">
+    <h3 class="display-4">Создание статьи</h3>
+</div>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'blog:blogs_list' %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

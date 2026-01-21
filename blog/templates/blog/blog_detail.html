@@ -1,0 +1,13 @@
+{% extends "catalog/home.html" %}
+
+{% block title %}Детали статьи{% endblock %}
+
+{% block content %}
+{% include 'catalog/header.html' %}
+<h2>Детали статьи</h2>
+<p>Название статьи: "{{ blog_post.title }}"</p>
+<p>Содержание статьи: {{ blog_post.content }}</p>
+<a href="{% url 'blog:blogs_list' %}">Вернуться к списку статей</a>
+<a href="{% url 'blog:blog_update' blog_post.pk %}" class="btn btn-secondary">Редактировать</a>
+<a href="{% url 'blog:blog_delete' blog_post.pk %}"class="btn btn-danger">Удалить</a>
+{% endblock %}
