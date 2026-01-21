@@ -1,35 +1,18 @@
 {% extends "catalog/home.html" %}
+
+{% block title %}Детали продукта{% endblock %}
+
 {% block content %}
-    <div class="container mt-5">
-        <h1 class="mb-4">{{ product.name }}</h1>
-        <p>Описание: {{product.description}}</p>
-        <p>Категория: {{product.category}}</p>
-        <p>Цена: {{product.price}}</p>
-        <p>Дата создания: {{product.created_at|date:"d M Y"}}</p>
-        <p>Дата изменения: {{product.updated_at|date:"d M Y"}}</p>
-    </div>
+{% include 'catalog/header.html' %}
+<h2>Детали продукта</h2>
+<p>Название продукта: "{{product.name}}"</p>
+<p>Описание продукта: {{product.description}}</p>
+<p>Категория: {{product.category}}</p>
+<p>Цена: {{product.price}}</p>
+<p>Дата создания: {{product.created_at|date:"d M Y"}}</p>
+<p>Дата изменения: {{product.updated_at|date:"d M Y"}}</p>
+
+<a href="{% url 'catalog:catalog_list' %}">Вернуться к списку продуктов</a>
+<a href="{% url 'catalog:product_update' product.pk %}" class="btn btn-secondary">Редактировать</a>
+<a href="{% url 'catalog:product_delete' product.pk %}"class="btn btn-danger">Удалить</a>
 {% endblock %}
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Обзор продукта</title>-->
-<!--    &lt;!&ndash; Подключение Bootstrap CSS &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="/static/css/bootstrap.min.css">-->
-<!--</head>-->
-<!--<body>-->
-<!--    <div class="container mt-5">-->
-<!--        <h1 class="mb-4">{{ product.name }}</h1>-->
-<!--        <p>Описание: {{ product.description }}</p>-->
-<!--        <p>Категория: {{product.category }}</p>-->
-<!--        <p>Цена: {{ product.price }}</p>-->
-<!--        <p>Дата создания: {{ product.created_at|date:"d M Y" }}</p>-->
-<!--        <p>Дата изменения: {{ product.updated_at|date:"d M Y" }}</p>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; Подключение Bootstrap JS &ndash;&gt;-->
-<!--    <script src="/static/js/bootstrap.bundle.min.js"></script>-->
-<!--</body>-->
-<!--</html>-->
