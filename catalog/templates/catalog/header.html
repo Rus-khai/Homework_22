@@ -1,9 +1,8 @@
 <header>
     <h1>Блог</h1>
-    <nav>
-        <a href="{% url 'blog:blogs_list' %}">Список статей</a>
-        <a href="{% url 'blog:blog_create' %}">Добавить статью</a>
-        <a href="{% url 'catalog:catalog_list' %}">Список продуктов</a>
-        <a href="{% url 'catalog:product_form' %}">Добавить продукт</a>
-    </nav>
+    {% if user.is_authenticated %}
+        <p>Добро пожаловать, {{ user.email }}!</p>
+    {% else %}
+        <p>Добро пожаловать на сайт!</p>
+    {% endif %}
 </header>
