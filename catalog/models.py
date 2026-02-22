@@ -37,6 +37,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True, verbose_name="Дата изменения продукта"
     )
+    can_unpublish_product = models.BooleanField(default=False, verbose_name="Не разрешено отменить публикацию")
 
     def __str__(self):
         return self.name
