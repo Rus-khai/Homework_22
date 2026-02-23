@@ -6,7 +6,7 @@ from config import settings
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'price', 'description', 'category', 'image']
+        fields = ['name', 'price', 'description', 'category', 'can_unpublish_product']
 
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
@@ -18,8 +18,9 @@ class ProductForm(forms.ModelForm):
                                                         'placeholder': 'Введите описание'})
         self.fields['category'].widget.attrs.update({'class': 'form-control',
                                                      'placeholder': 'Введите категорию'})
-        self.fields['image'].widget.attrs.update({'class': 'form-control',
-                                                  'placeholder': 'Загрузите изображение продукта'})
+        self.fields['can_unpublish_product'].widget.attrs.update({'class': 'form-check-input'})
+
+
 
     def clean_price(self):
         cleaned_data = super().clean()

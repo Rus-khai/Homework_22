@@ -21,6 +21,8 @@
                       <button type="submit" class="btn btn-link nav-link ">Выйти</button>
                     </form>
                 </li>
+                <li><a href="{% url 'catalog:product_form' %}" class="text-white">Добавить продукт</a></li>
+                <li><a href="{% url 'blog:blog_create' %}" class="text-white">Добавить статью</a></li>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'users:login' %}">Войти</a>
