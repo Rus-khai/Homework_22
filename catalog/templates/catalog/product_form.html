@@ -1,17 +1,32 @@
 {% extends "catalog/home.html" %}
 
-
 {% block content %}
 
 {% include 'catalog/header.html' %}
 <div class="pricing-header px-3 py-3 pt-md-0 pb-md-3 mx-auto text-center">
     <h3 class="display-4">Добавление продукта</h3>
 </div>
-<form method="post">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Сохранить</button>
-    <a href="{% url 'catalog:catalog_list' %}" class="btn btn-secondary">Отмена</a>
-</form>
+<div class="card-body p-4 p-lg-5">
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <div class="mb-3">
+                <label for="id_{{ field.name }}" class="form-label">
+                    {{ field.label }}
+                    {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                </label>
+                {{ field }}
+                {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                {% if field.errors %}
+                    <ul class="form-errors list-unstyled mt-1 mb-0">
+                        {% for error in field.errors %}<li class="small text-danger">{{ error }}</li>{% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="{% url 'catalog:catalog_list' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
 {% endblock %}

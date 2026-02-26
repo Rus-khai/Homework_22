@@ -40,7 +40,10 @@ class Product(models.Model):
         auto_now=True, verbose_name="Дата изменения продукта"
     )
     can_unpublish_product = models.BooleanField(default=False, verbose_name="Не разрешено отменить публикацию")
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='object_list', null=True,
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              on_delete=models.CASCADE,
+                              related_name='object_list',
+                              null=True,
                               blank=True)
 
     def __str__(self):

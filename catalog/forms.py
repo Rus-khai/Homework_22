@@ -20,14 +20,12 @@ class ProductForm(forms.ModelForm):
                                                      'placeholder': 'Введите категорию'})
         self.fields['can_unpublish_product'].widget.attrs.update({'class': 'form-check-input'})
 
-
-
     def clean_price(self):
         cleaned_data = super().clean()
         price = cleaned_data.get('price')
         if price is not None and price < 0:
             raise forms.ValidationError("Цена продукта не может быть отрицательной.")
-        return cleaned_data
+        return price
 
     def clean_name(self):
         name = self.cleaned_data['name'].lower()
