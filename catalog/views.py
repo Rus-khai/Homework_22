@@ -1,4 +1,3 @@
-
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
@@ -9,12 +8,28 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView,
 
 from catalog.forms import ProductForm
 from catalog.models import Product
+from catalog.services import get_products_from_cache, get_products_by_category
 
 
 class HomeView(ListView):
     model = Product
     template_name = "catalog/home.html"
     context_object_name = "products"
+
+
+class ProductsByCategoryView(ListView):
+    model = Product
+    template_name = "catalog/products_by_category.html"
+    context_object_name = "products"
+
+    def get_queryset(self):
+        category_slug = self.kwargs.get("category_slug")
+        return get_products_by_category(category_slug)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category_slug"] = self.kwargs.get("category_slug")
+        return context
 
 
 class ContactsView(TemplateView):
@@ -47,8 +62,13 @@ class CatalogListView(LoginRequiredMixin, ListView):
     permission_required = 'catalog.view_product'
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(can_unpublish_product=False)
+        # Используем кешированную функцию для получения всех продуктов
+        products = get_products_from_cache()
+
+        # Применяем фильтр can_unpublish_product=False
+        queryset = [prod for prod in products if not getattr(prod, 'can_unpublish_product', False)]
+
+        return queryset
 
 
 class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
