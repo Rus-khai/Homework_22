@@ -1,0 +1,21 @@
+{% extends "catalog/home.html" %}
+
+{% block title %}Детали продукта{% endblock %}
+
+{% block content %}
+{% include 'catalog/header.html' %}
+<h2>Продукты по категории "{{ category_slug }}"</h2>
+{% if products %}
+    <ul>
+        {% for product in products %}
+            <li><a href="{% url 'catalog:detail_product' product.pk %}">{{ product.name }}</a></li>
+        {% empty %}
+            <li>Нет продуктов в этой категории.</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Категория не найдена.</p>
+{% endif %}
+<a href="{% url 'catalog:catalog_list' %}">Вернуться к списку продуктов</a>
+{% endblock %}
+

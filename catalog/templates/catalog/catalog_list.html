@@ -1,6 +1,8 @@
 {% extends "catalog/home.html" %}
 {% load my_tags %}
+
 {% block content %}
+{% include 'catalog/header.html' %}
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -17,6 +19,12 @@
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                         <a class="btn btn-primary" href="{% url 'catalog:detail_product' product.id %}">Посмотреть</a>
+                        {% if user == product.owner %}
+                            <a href="{% url 'catalog:can_unpublish_product' product.pk %}"class="btn btn-warning">Отменить публикацию</a>
+                        {% endif %}
+                        {% if user == product.owner %}
+                            <a href="{% url 'catalog:product_delete' product.pk %}"class="btn btn-danger">Удалить</a>
+                        {% endif %}
                       </div>
                     <small class="text-body-secondary">9 mins</small>
                     </div>
